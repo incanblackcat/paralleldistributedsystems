@@ -1,7 +1,6 @@
 import time
 import threading
 
-
 class thread(threading.Thread):
     __kill = False
     __count = 0
@@ -28,6 +27,7 @@ class thread(threading.Thread):
 
 def newThread(num):
     allThreads = []
+    operations = 0
     for i in range(num):
         t = thread(i)
         t.start()
@@ -39,15 +39,10 @@ def newThread(num):
     for i in allThreads:
         i.join()
 
-       return None
+    for i in allThreads:
+        operations += i.get_Count()
 
-
-operations = 0
-
-for t in allThreads:
-    operations += t.get_Count()
-
-print('Operations: ' + str(operations))
+    print('Operations: ' + str(operations))
 
 
 def main():
